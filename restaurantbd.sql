@@ -6,7 +6,8 @@
 -- Tiempo de generación: 13-07-2018 a las 12:18:45
 -- Versión del servidor: 5.7.21
 -- Versión de PHP: 7.0.29
-
+create database restaurantbd;
+use restaurantbd;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
