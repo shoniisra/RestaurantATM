@@ -3,11 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 13-07-2018 a las 12:18:45
+-- Tiempo de generación: 16-07-2018 a las 13:18:16
 -- Versión del servidor: 5.7.21
 -- Versión de PHP: 7.0.29
-create database restaurantbd;
-use restaurantbd;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -148,14 +147,15 @@ CREATE TABLE IF NOT EXISTS `pedido` (
   `ped_estado` varchar(60) NOT NULL COMMENT 'Estado de Pedido',
   `ped_fecha` date NOT NULL COMMENT 'Fecha Pedido',
   PRIMARY KEY (`ped_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `pedido`
 --
 
 INSERT INTO `pedido` (`ped_id`, `ped_numero`, `ped_estado`, `ped_fecha`) VALUES
-(1, 1111, 'ABIERTO', '2018-07-10');
+(1, 1111, 'ABIERTO', '2018-07-10'),
+(2, 3, 'ABIERTO', '2018-08-08');
 
 -- --------------------------------------------------------
 
@@ -183,6 +183,35 @@ CREATE TABLE IF NOT EXISTS `producto` (
 
 INSERT INTO `producto` (`pro_id`, `pro_nombre`, `pro_descripcion`, `pro_costo`, `pro_precio`, `pro_imagen`, `pro_estado`, `cat_id`) VALUES
 (1, 'PAPAS', 'TUBÉRCULO', 0, 1, 'IMAGEN PAPAS', 'DISPONIBLE', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(80) NOT NULL,
+  `password` varchar(250) NOT NULL,
+  `authKey` varchar(250) NOT NULL,
+  `accessToken` varchar(250) NOT NULL,
+  `activate` tinyint(1) NOT NULL DEFAULT '0',
+  `verification_code` varchar(250) NOT NULL,
+  `role` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `authKey`, `accessToken`, `activate`, `verification_code`, `role`) VALUES
+(5, 'anthoro2', 'huasipango@gmail.com', 'fsbqobwqC.aMo', '120aab889efc525bb86f061d2c1f7179b5d7403d11555f230b536af85eae2d79b7f35450e21cca5abbb51d42de9c37d6078cb5c1123084eeca763eeabde8af92c57385a0bfb3abd12784bcf009a275bbe1b8b3ddaa942021f2008954a3b9aa336b6c3e78', 'f4e303d02beac326ac2f3c18437d2861bb8f44ecb2135c4602f32c4c78dc60b8c18ae357a7b953c4d7257aed1ca9157d34e3e02fe9bda7b0f9c426ed1ed4198005a94b569a0f6afa79b2304a7e5e8a0145de04daa9c07aa2680ea8063c454ad0d2512ccd', 0, '', 1),
+(4, 'anthoro', 'anthoro.53@gmail.com', 'fsVxBShJYasG2', 'fdc2a47b77cc9eaa07cffb30699799e969e02281b37664c31315296d55781e39245cffe55e8e984b9db8a508aeb7f1e85d373ab756f32a2075c99ef1655432f4e47fc2d7ccc71a64bb38d6587b5ed16fd905c965810968055ff58b0deeb7de372c092d41', 'a399140540219f10c08e3a6ecd6cd08b33862e52a0baf191ffa2f3f2db1cf13312d2961e6e91c0608c251ae5483a6f395e8c7d378ae6eead88069f3513b64cadf994a1bff49a7938d14572d44c81766f01193394dc9b533188e1b3e0c3c91f9f67ed23d8', 1, 'c849ced5', 1),
+(6, 'jacc', 'jacc_bobis@hotmail.com', 'fsbqobwqC.aMo', '241f666373e38d701f7f4ea2b47f76b62ebed14819ea0b4441cdef4682243b2987bc999b1d3ff766d179ef48bd284efb4e17c04c60f131e7de834ca7369acf3a63d0545b2002d9d52afc08652d599ec7f5f747c74e80ef11d4c221717387cbb3d67c9782', 'ba5d43bcecf6a9fb1603660c155f46bb959815b451888ed327fc5fc3b2905242dd20352a2578c2199634b6d9bc3fcd376327c3ef67c663bd53e96b4c153c958a678baf01f77263ae8ffd7e2eec98cc2bca3ee991e48cb00e185fff5d005150397a5f9170', 1, '', 2);
 
 --
 -- Restricciones para tablas volcadas
