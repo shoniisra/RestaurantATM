@@ -42,20 +42,20 @@ AppAsset::register($this);
         // 'options' => ['style' => 'font-size:10px'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Clientes', 'url' => ['/cliente/index']],
+            
                 
             ['label' => 'Sobre nosotros', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
                 
                 ['label' => 'User Login', 'url' => ['#'], 'items' => [
-                    ['label' => 'Sign up', 'url' => '/site/register'],
                     ['label' => 'Login', 'url' => ['/site/login']],
+                    ['label' => 'Sign up', 'url' => '/site/register'],
                 ]]
             ) : (
                 User::isUserAdmin(Yii::$app->user->identity->id) ?(
                     ['label' => 'Welcome '. Yii::$app->user->identity->username, 'items' => [
-
+                    ['label' => 'Clientes', 'url' => ['/cliente/index']],
                     ['label' => 'Pedidos', 'url' => ['/pedido/index']],
                     ['label' => 'Categorías', 'url' => ['/categoria/index']],
                     ['label' => 'Productos', 'url' => ['/producto/index']],
@@ -69,7 +69,6 @@ AppAsset::register($this);
                 ]
                 ):(
                 ['label' => 'Welcome '. Yii::$app->user->identity->username, 'items' => [
-
                     ['label' => 'Pedidos', 'url' => ['/pedido/index']],
                     ['label' => 'Logout (' . \Yii::$app->user->identity->username . ')',
                         'url' => ['/site/logout'],
