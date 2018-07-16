@@ -25,8 +25,7 @@ body {
     width: 100%;
     background-color: white;
     padding-bottom: 17px;
-    position: relative;
-    float: left;
+
     margin-bottom: -40px;
 }
 
@@ -73,11 +72,12 @@ body {
     padding-top: 20px;
 }
 
-.jumbotron {
+.jumbotron{
     text-align: left;
     background-color: transparent;
     margin-bottom: 22px;
 }
+
 
 .jumbotron .btn {
     font-size: 21px;

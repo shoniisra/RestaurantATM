@@ -10,7 +10,7 @@ $this->title = 'Admin Rapidito';
 <div class="contenedor-total">
 	<div class="contenedor-aux-guest">
 
-	    <div class="jumbotron">
+	    <div class="jumbotron" style="text-align: center;">
 	        <h1>Eres Admin</h1>
   	        <p class="lead">Revisa tus opciones en el menú.</p>
 
@@ -18,9 +18,5 @@ $this->title = 'Admin Rapidito';
 	        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Realiza un pedido</a></p>
 	    </div>
     </div>
-    <div class="contenedor-derecha">
-    	<img src="images/index/burguer.png" alt="Hamburguesa" width="530" />
-    </div>
-
 
 </div>
