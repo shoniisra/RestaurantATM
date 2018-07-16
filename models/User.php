@@ -14,10 +14,29 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     public $activate;
     public $verification_code;
 
-    /**
-     * @inheritdoc
-     */
-    
+    public $role;
+
+    public static function isUserAdmin($id)
+    {
+       if (Users::findOne(['id' => $id, 'activate' => '1', 'role' => 2])){
+        return true;
+       } else {
+
+        return false;
+       }
+
+    }
+
+    public static function isUserSimple($id)
+    {
+       if (Users::findOne(['id' => $id, 'activate' => '1', 'role' => 1])){
+       return true;
+       } else {
+
+       return false;
+       }
+    }
+
     /* busca la identidad del usuario a través de su $id */
 
     public static function findIdentity($id)

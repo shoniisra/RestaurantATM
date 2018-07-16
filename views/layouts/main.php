@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\models\User;
 
 AppAsset::register($this);
 ?>
@@ -41,25 +42,41 @@ AppAsset::register($this);
         // 'options' => ['style' => 'font-size:10px'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Cliente', 'url' => ['/cliente/index']],
-            ['label' => 'Pedidos', 'url' => ['/pedido/index']],
-            ['label' => 'Categoría', 'url' => ['/categoria/index']],
-            ['label' => 'Producto', 'url' => ['/producto/index']],
-            ['label' => 'Factura', 'url' => ['/factura/index']],
-            ['label' => 'Pago', 'url' => ['/cobro/index']],
+            ['label' => 'Clientes', 'url' => ['/cliente/index']],
+                
             ['label' => 'Sobre nosotros', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+                
+                ['label' => 'User Login', 'url' => ['#'], 'items' => [
+                    ['label' => 'Sign up', 'url' => '/site/register'],
+                    ['label' => 'Login', 'url' => ['/site/login']],
+                ]]
             ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
+                User::isUserAdmin(Yii::$app->user->identity->id) ?(
+                    ['label' => 'Welcome '. Yii::$app->user->identity->username, 'items' => [
+
+                    ['label' => 'Pedidos', 'url' => ['/pedido/index']],
+                    ['label' => 'Categorías', 'url' => ['/categoria/index']],
+                    ['label' => 'Productos', 'url' => ['/producto/index']],
+                    ['label' => 'Facturas', 'url' => ['/factura/index']],
+                    ['label' => 'Pagos', 'url' => ['/cobro/index']],
+
+                    ['label' => 'Logout (' . \Yii::$app->user->identity->username . ')',
+                        'url' => ['/site/logout'],
+                        'linkOptions' => ['data-method' => 'post']]
+                    ]
+                ]
+                ):(
+                ['label' => 'Welcome '. Yii::$app->user->identity->username, 'items' => [
+
+                    ['label' => 'Pedidos', 'url' => ['/pedido/index']],
+                    ['label' => 'Logout (' . \Yii::$app->user->identity->username . ')',
+                        'url' => ['/site/logout'],
+                        'linkOptions' => ['data-method' => 'post']]
+                    ]
+                ]
+                )                
             )
 
         ],

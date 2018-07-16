@@ -21,6 +21,15 @@ body {
     margin-bottom: -40px;
 }
 
+.contenedor-aux-guest{
+    width: 100%;
+    background-color: white;
+    padding-bottom: 17px;
+    position: relative;
+    float: left;
+    margin-bottom: -40px;
+}
+
 .contenedor-derecha{
     width: 40%;
     background-color: white;

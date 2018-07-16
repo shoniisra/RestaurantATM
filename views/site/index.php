@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'Rapidito';
+$this->title = 'Guest Rapidito';
 ?>
 <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">  
 
