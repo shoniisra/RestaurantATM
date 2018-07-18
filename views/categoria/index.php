@@ -27,8 +27,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'cat_id',
             'cat_nombre',
-            'cat_imagen',
+            //'cat_imagen',
             'cat_descripcion',
+					[
+                     'attribute' => 'cat_imagen',
+                     'format' => 'raw',
+                     'value' => function ($model) {   
+                        if ($model->cat_imagen!='')
+                          return '<img src="'.Yii::getAlias('@categoriaImgUrl')."/".$model->cat_imagen.'" width="100px" height="100px">'; else return 'no image';
+						},
+                   ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

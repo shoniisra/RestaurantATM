@@ -36,6 +36,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'pro_imagen',
             'pro_estado',
             'cat_id',
+			[
+				'attribute'=>'pro_imagen',
+				'value'=> Yii::getAlias('@productoImgUrl')."/".$model->pro_imagen,
+				'format'=>['image',['width'=>'100','height'=>'100']]
+			]
         ],
     ]) ?>
 

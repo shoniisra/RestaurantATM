@@ -25,7 +25,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'pro_precio') ?>
 
-    <?php // echo $form->field($model, 'pro_imagen') ?>
+    <?php echo $form->field($model, 'pro_imagen') ?>
 
     <?php // echo $form->field($model, 'pro_estado') ?>
 

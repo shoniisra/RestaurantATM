@@ -8,6 +8,7 @@ use app\models\CategoriaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * CategoriaController implements the CRUD actions for Categoria model.
@@ -66,7 +67,24 @@ class CategoriaController extends Controller
     {
         $model = new Categoria();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+			$model->save();
+			$productoId = $model->cat_nombre;
+			$image= UploadedFile::getInstance($model,'cat_imagen');
+			if(isset($image)){
+				$imgName='cat_'. $productoId . '.'.$image->getExtension();
+				$image->saveAs(Yii::getAlias('@categoriaImgPath')."/".$imgName);
+			}else{
+				$imgName='cat_'. $productoId ;
+			}
+			
+			
+			$model->cat_imagen = $imgName;
+			$model->save();
+
+			
+			
+			
             return $this->redirect(['view', 'id' => $model->cat_id]);
         }
 
@@ -86,7 +104,29 @@ class CategoriaController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $model = $this->findModel($id);
+		$oldImage = $model->cat_imagen;
+		$productoId = $model->cat_nombre;
+		
+        if ($model->load(Yii::$app->request->post())) {
+			$image= UploadedFile::getInstance($model,'cat_imagen');
+			    if(isset($image)){
+				$imgName='cat_'. $productoId . '.'.$image->getExtension();
+				$model->cat_imagen = $imgName;
+				} else {
+					$model->cat_imagen = $oldImage;
+				}
+				if($model->save())
+				{
+					if(isset($image)){
+					$imgName='cat_'. $productoId . '.'.$image->getExtension();
+					$image->saveAs(Yii::getAlias('@categoriaImgPath')."/".$imgName);  
+					}
+				}
+			
+			
+			
+			
             return $this->redirect(['view', 'id' => $model->cat_id]);
         }
 

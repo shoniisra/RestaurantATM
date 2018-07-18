@@ -30,9 +30,10 @@ class Categoria extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cat_nombre', 'cat_imagen', 'cat_descripcion'], 'required'],
+            [['cat_nombre', 'cat_descripcion'], 'required'],
             [['cat_nombre'], 'string', 'max' => 60],
-            [['cat_imagen', 'cat_descripcion'], 'string', 'max' => 200],
+            [['cat_descripcion'], 'string', 'max' => 200],
+			[['cat_imagen'], 'default', 'value' => 'no image'],
         ];
     }
 
