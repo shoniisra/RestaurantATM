@@ -8,6 +8,7 @@ use app\models\ProductoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ProductoController implements the CRUD actions for Producto model.
@@ -66,7 +67,24 @@ class ProductoController extends Controller
     {
         $model = new Producto();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+			$model->save();
+			$productoId = $model->pro_nombre;
+			$image= UploadedFile::getInstance($model,'pro_imagen');
+			if(isset($image)){
+				$imgName='pro_'. $productoId . '.'.$image->getExtension();
+				$image->saveAs(Yii::getAlias('@productoImgPath')."/".$imgName);
+			}else{
+				$imgName='pro_'. $productoId ;
+			}
+			
+			
+			$model->pro_imagen = $imgName;
+			$model->save();
+
+			
+			
+			
             return $this->redirect(['view', 'id' => $model->pro_id]);
         }
 
@@ -85,8 +103,28 @@ class ProductoController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+		$oldImage = $model->pro_imagen;
+		$productoId = $model->pro_nombre;
+		
+        if ($model->load(Yii::$app->request->post())) {
+			$image= UploadedFile::getInstance($model,'pro_imagen');
+			    if(isset($image)){
+				$imgName='pro_'. $productoId . '.'.$image->getExtension();
+				$model->pro_imagen = $imgName;
+				} else {
+					$model->pro_imagen = $oldImage;
+				}
+				if($model->save())
+				{
+					if(isset($image)){
+					$imgName='pro_'. $productoId . '.'.$image->getExtension();
+					$image->saveAs(Yii::getAlias('@productoImgPath')."/".$imgName);  
+					}
+				}
+			
+			
+			
+			
             return $this->redirect(['view', 'id' => $model->pro_id]);
         }
 

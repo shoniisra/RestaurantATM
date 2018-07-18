@@ -35,11 +35,14 @@ class Producto extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['pro_nombre', 'pro_descripcion', 'pro_costo', 'pro_precio', 'pro_imagen', 'pro_estado', 'cat_id'], 'required'],
+            [['pro_nombre', 'pro_descripcion', 'pro_costo', 'pro_precio', 'pro_estado', 'cat_id'], 'required'],
             [['pro_costo', 'pro_precio'], 'number'],
             [['cat_id'], 'integer'],
             [['pro_nombre', 'pro_estado'], 'string', 'max' => 60],
             [['pro_descripcion', 'pro_imagen'], 'string', 'max' => 200],
+			[['pro_imagen'], 'default', 'value' => 'no image'],
+
+			
             [['cat_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categoria::className(), 'targetAttribute' => ['cat_id' => 'cat_id']],
         ];
     }

@@ -30,7 +30,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'pro_descripcion',
             'pro_costo',
             'pro_precio',
-            //'pro_imagen',
+			//'pro_imagen',
+					[
+                     'attribute' => 'pro_imagen',
+                     'format' => 'raw',
+                     'value' => function ($model) {   
+                        if ($model->pro_imagen!='')
+                          return '<img src="'.Yii::getAlias('@productoImgUrl')."/".$model->pro_imagen.'" width="100px" height="100px">'; else return 'no image';
+                     },
+                   ],
+			
             //'pro_estado',
             //'cat_id',
 

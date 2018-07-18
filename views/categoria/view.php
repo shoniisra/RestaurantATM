@@ -32,6 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'cat_nombre',
             'cat_imagen',
             'cat_descripcion',
+			[
+				'attribute'=>'cat_imagen',
+				'value'=> Yii::getAlias('@categoriaImgUrl')."/".$model->cat_imagen,
+				'format'=>['image',['width'=>'100','height'=>'100']]
+			]
         ],
     ]) ?>
 
