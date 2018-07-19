@@ -8,7 +8,6 @@ use Yii;
  * This is the model class for table "pedido".
  *
  * @property int $ped_id id de Pedido
- * @property int $ped_numero numero de Pedido
  * @property string $ped_estado Estado de Pedido
  * @property string $ped_fecha Fecha Pedido
  *
@@ -31,8 +30,7 @@ class Pedido extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ped_numero', 'ped_estado', 'ped_fecha'], 'required'],
-            [['ped_numero'], 'integer'],
+            [['ped_estado', 'ped_fecha'], 'required'],
             [['ped_fecha'], 'safe'],
             [['ped_estado'], 'string', 'max' => 60],
         ];
@@ -44,10 +42,9 @@ class Pedido extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'ped_id' => 'id de Pedido',
-            'ped_numero' => 'numero de Pedido',
-            'ped_estado' => 'Estado de Pedido',
-            'ped_fecha' => 'Fecha Pedido',
+            'ped_id' => 'Ped ID',
+            'ped_estado' => 'Ped Estado',
+            'ped_fecha' => 'Ped Fecha',
         ];
     }
 

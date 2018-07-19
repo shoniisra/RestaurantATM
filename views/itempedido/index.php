@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\ItempedidoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Itempedidos';
+$this->title = 'Carrito de Compras';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="itempedido-index">
@@ -27,7 +27,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'ite_id',
             'ite_cantidad',
-            'ite_nombre',
             'ped_id',
             'pro_id',
 

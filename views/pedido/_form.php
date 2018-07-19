@@ -12,8 +12,6 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'ped_numero')->textInput() ?>
-
     <?= $form->field($model, 'ped_estado')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'ped_fecha')->textInput() ?>

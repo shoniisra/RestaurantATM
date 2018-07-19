@@ -17,8 +17,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'ped_id') ?>
 
-    <?= $form->field($model, 'ped_numero') ?>
-
     <?= $form->field($model, 'ped_estado') ?>
 
     <?= $form->field($model, 'ped_fecha') ?>
