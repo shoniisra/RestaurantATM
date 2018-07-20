@@ -19,7 +19,7 @@ class PedidoSearch extends Pedido
     {
         return [
             [['ped_id'], 'integer'],
-            [['ped_estado', 'ped_fecha'], 'safe'],
+            [['ped_estado', 'ped_total'], 'safe'],
         ];
     }
 
@@ -60,10 +60,10 @@ class PedidoSearch extends Pedido
         // grid filtering conditions
         $query->andFilterWhere([
             'ped_id' => $this->ped_id,
-            'ped_fecha' => $this->ped_fecha,
         ]);
 
-        $query->andFilterWhere(['like', 'ped_estado', $this->ped_estado]);
+        $query->andFilterWhere(['like', 'ped_estado', $this->ped_estado])
+            ->andFilterWhere(['like', 'ped_total', $this->ped_total]);
 
         return $dataProvider;
     }

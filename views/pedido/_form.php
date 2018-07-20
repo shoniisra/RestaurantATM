@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'ped_estado')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'ped_fecha')->textInput() ?>
+    <?= $form->field($model, 'ped_total')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

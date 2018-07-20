@@ -27,12 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'ped_id',
             'ped_estado',
-            'ped_fecha',
+            'ped_total',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
-
-    
 </div>

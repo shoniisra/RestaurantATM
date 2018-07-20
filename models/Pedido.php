@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $ped_id id de Pedido
  * @property string $ped_estado Estado de Pedido
- * @property string $ped_fecha Fecha Pedido
+ * @property string $ped_total Valor Total
  *
  * @property Factura[] $facturas
  * @property Itempedido[] $itempedidos
@@ -30,9 +30,9 @@ class Pedido extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ped_estado', 'ped_fecha'], 'required'],
-            [['ped_fecha'], 'safe'],
+            [['ped_estado', 'ped_total'], 'required'],
             [['ped_estado'], 'string', 'max' => 60],
+            [['ped_total'], 'string', 'max' => 45],
         ];
     }
 
@@ -42,9 +42,9 @@ class Pedido extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'ped_id' => 'Ped ID',
-            'ped_estado' => 'Ped Estado',
-            'ped_fecha' => 'Ped Fecha',
+            'ped_id' => 'id de Pedido',
+            'ped_estado' => 'Estado de Pedido',
+            'ped_total' => 'Valor Total',
         ];
     }
 

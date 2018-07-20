@@ -44,10 +44,10 @@ class Itempedido extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'ite_id' => 'Ite ID',
-            'ite_cantidad' => 'Ite Cantidad',
-            'ped_id' => 'Ped ID',
-            'pro_id' => 'Pro ID',
+            'ite_id' => 'id de Item Pedido',
+            'ite_cantidad' => 'Cantidad de Item Pedido',
+            'ped_id' => 'id de Pedido',
+            'pro_id' => 'id de Producto',
         ];
     }
 

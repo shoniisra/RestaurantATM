@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 19-07-2018 a las 13:23:15
+-- Tiempo de generación: 20-07-2018 a las 15:40:17
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 5.6.31
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   `cat_imagen` varchar(200) NOT NULL COMMENT 'Imagen de Categoria',
   `cat_descripcion` varchar(200) NOT NULL COMMENT 'Descripcion de Categoria',
   PRIMARY KEY (`cat_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `categoria`
@@ -49,7 +49,8 @@ INSERT INTO `categoria` (`cat_id`, `cat_nombre`, `cat_imagen`, `cat_descripcion`
 (5, 'a', 'no image', 'a'),
 (6, '23', 'no image', '12'),
 (7, 'qwyeqw', 'no image', '12e'),
-(8, '23e', 'no image', 'df');
+(8, '23e', 'no image', 'df'),
+(9, 'qwe', 'cat_qwe.jpg', 'qw');
 
 -- --------------------------------------------------------
 
@@ -104,9 +105,8 @@ CREATE TABLE IF NOT EXISTS `factura` (
   `fac_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id de Factura',
   `fac_fecha` date NOT NULL COMMENT 'Fecha de Factura',
   `fac_subtotal` float NOT NULL COMMENT 'Subtotal de Factura',
-  `fac_total` float NOT NULL COMMENT 'Total de Factura',
+  `fac_total` float NOT NULL COMMENT 'Total a Pagar',
   `fac_iva` float NOT NULL COMMENT 'Iva de Factura',
-  `fac_estado` varchar(60) NOT NULL COMMENT 'Estado de Factura',
   `cli_id` int(11) NOT NULL COMMENT 'id de Cliente',
   `ped_id` int(11) NOT NULL COMMENT 'id de Pedido',
   `cob_id` int(11) NOT NULL COMMENT 'id Cobro',
@@ -131,14 +131,16 @@ CREATE TABLE IF NOT EXISTS `itempedido` (
   PRIMARY KEY (`ite_id`),
   KEY `ped_id` (`ped_id`),
   KEY `pro_id` (`pro_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `itempedido`
 --
 
 INSERT INTO `itempedido` (`ite_id`, `ite_cantidad`, `ped_id`, `pro_id`) VALUES
-(1, 10, 1, 1);
+(1, 10, 1, 1),
+(2, 1, 1, 1),
+(3, 3, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -150,17 +152,18 @@ DROP TABLE IF EXISTS `pedido`;
 CREATE TABLE IF NOT EXISTS `pedido` (
   `ped_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id de Pedido',
   `ped_estado` varchar(60) NOT NULL COMMENT 'Estado de Pedido',
-  `ped_fecha` date NOT NULL COMMENT 'Fecha Pedido',
+  `ped_total` varchar(45) NOT NULL COMMENT 'Valor Total',
   PRIMARY KEY (`ped_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `pedido`
 --
 
-INSERT INTO `pedido` (`ped_id`, `ped_estado`, `ped_fecha`) VALUES
-(1, 'ABIERTO', '2018-07-10'),
-(2, 'ABIERTO', '2018-08-08');
+INSERT INTO `pedido` (`ped_id`, `ped_estado`, `ped_total`) VALUES
+(1, 'ABIERTO', ''),
+(2, 'ABIERTO', ''),
+(3, '1', '');
 
 -- --------------------------------------------------------
 
